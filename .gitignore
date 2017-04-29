@@ -2,4 +2,3 @@
 .gitignore
 .idea/
 api/node_modules
-package.json
