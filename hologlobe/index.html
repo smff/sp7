@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>ThreeGeoJSON Demo</title>
+
+        <style>
+            body, html {
+                background-color: black;
+                margin: 0;
+                padding: 0;
+            }
+
+            #container canvas {
+                position: absolute;
+                font-size: 24pt;
+                width: 400px;
+                height: 300px;
+            }
+
+            #container #top {
+                display: none;
+                top: 0;
+                left: 30%;
+            }
+
+            #container #right {
+                /*display: none;*/
+                top: 20%;
+                left: 60%;
+                transform: rotate(90deg);
+            }
+
+            #container #bottom {
+                top: 60%;
+                left: 30%;
+                transform: rotate(180deg);
+            }
+
+            #container #left {
+                /*display: none;*/
+                top: 20%;
+                left: 0;
+                transform: rotate(270deg);
+            }
+
+            #center {
+                position: absolute;
+                top: 220px;
+                left: 410px;
+                background-color: gray;
+                width: 150px;
+                height: 150px;
+            }
+
+            #test {
+                position: absolute;
+                opacity: 0;
+                /*background-color: green;*/
+            }
+        </style>
+
+        <script src="lib/threeGeoJSON.js"></script>
+
+        <!-- Three.js library, movement controls, and jquery for the geojson-->
+        <script src="lib/three.min.js"></script>
+
+		<script src="lib/shaders/CopyShader.js"></script>
+		<script src="lib/shaders/DigitalGlitch.js"></script>
+		<script src="lib/shaders/FilmShader.js"></script>
+
+		<script src="lib/postprocessing/EffectComposer.js"></script>
+		<script src="lib/postprocessing/RenderPass.js"></script>
+		<script src="lib/postprocessing/MaskPass.js"></script>
+		<script src="lib/postprocessing/ShaderPass.js"></script>
+		<script src="lib/postprocessing/GlitchPass.js"></script>
+		<script src="lib/postprocessing/FilmPass.js"></script>
+
+        <script src="lib/d3.min.js"></script>
+        <script src="lib/TrackballControls.js"></script>
+        <script src="lib/jquery-1.10.2.min.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <canvas id="top"></canvas>
+            <canvas id="right"></canvas>
+            <canvas id="bottom"></canvas>
+            <canvas id="left"></canvas>
+            <div id="center"></div>
+        </div>
+
+        <canvas id="test" width="360" height="180"></canvas>
+
+		<script src="./utils.js"></script>
+		<script src="./renderTexture.js"></script>
+		<script src="./renderer.js"></script>
+	</body>
+</html>
