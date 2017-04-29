@@ -79,7 +79,7 @@ cameras.forEach((camera) => {
 }
 
 //Draw the GeoJSON
-const test_json = $.getJSON("test_geojson/countries_states.geojson", function(data) {
+const test_json = $.getJSON("test_geojson/custom.geo.json", function(data) {
   drawThreeGeo(data, 10, 'sphere', {
     color: 0x80FF80,
     transparent: true,
