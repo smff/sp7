@@ -107,14 +107,25 @@ const composers = renderers.map((renderer, index) => {
   return composer;
 });
 
+let planetRotation = 0;
+
 //Render the image
 function render() {
+  planet.rotation.y += planetRotation;
   composers.forEach((composer) => composer.render());
   requestAnimationFrame(render);
 }
 
 render();
 
-socket.on('add action', function(msg) {
-  planet.rotation.y += 0.1;
+socket.on('rotate more', function(msg) {
+  planetRotation += 0.01;
+});
+
+socket.on('rotate less', function(msg) {
+  planetRotation -= 0.01;
+});
+
+socket.on('stop rotation', function(msg) {
+  planetRotation = 0;
 });
