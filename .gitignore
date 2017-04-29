@@ -1,6 +1,5 @@
 
 .gitignore
 .idea/
-node_modules
-api/
+api/node_modules
 package.json
