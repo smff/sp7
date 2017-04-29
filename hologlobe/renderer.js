@@ -3,6 +3,8 @@
 const width = 400;
 const height = 300;
 
+const socket = io();
+
 //New scene and camera
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, width / height, 0.5, 1000);
@@ -139,7 +141,12 @@ function render() {
   // renderer.render(scene, camera);
   renderers.forEach((renderer, index) => renderer.render(scene, cameras[index]));
   requestAnimationFrame(render);
-  planet.rotation.y += 0.03;
+  // planet.rotation.y += 0.03;
 }
+
+socket.on('add action', function(msg) {
+  planet.rotation.y += 0.1;
+});
+
 
 render();

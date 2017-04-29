@@ -7,9 +7,7 @@ const io = require('socket.io')(http);
 
 const handSensorProcessor = require('./handSensorProcessor');
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
+app.use(express.static('../hologlobe'));
 
 app.get('/action', (req, res) => {
   io.emit('add action', handSensorProcessor(req.query));
