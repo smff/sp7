@@ -52,16 +52,22 @@ cameras.forEach((camera) => {
   planet.add(sphere);
 }
 
-const heatmaps = [];
+let heatmapIndex = 0;
 let heatmapMaterial;
-let heatmapIndex;
+const heatmaps = [
+  textureLoader.load('temperature.png'),
+  textureLoader.load('pressure.png'),
+];
 
-$.getJSON("./temperature.json?=" + Math.random(), function(data) {
-  const texture = renderData(data, 250, 320);
-  heatmaps.push(texture);
-  heatmapIndex = 0;
+$.getJSON("test_geojson/custom.geo.json?q=" + Math.random(), function(data) {
+  drawThreeGeo(data, 10, 'sphere', {
+    color: 0x80FF80,
+    transparent: true,
+    opacity: 0.5,
+  }, planet);
+
   const material = new THREE.MeshBasicMaterial({
-    map: texture,
+    map: heatmaps[heatmapIndex],
     blending: THREE.AdditiveBlending,
     transparent: true,
     opacity: 0.3,
@@ -73,18 +79,13 @@ $.getJSON("./temperature.json?=" + Math.random(), function(data) {
   planet.add(mesh);
 });
 
-$.getJSON("./pressure.json?=" + Math.random(), function(data) {
-  const texture = renderData(data, 101000, 102000);
-  heatmaps.push(texture);
-});
+// $.getJSON("./temperature.json?=" + Math.random(), function(data) {
+// });
 
-$.getJSON("test_geojson/custom.geo.json?q=" + Math.random(), function(data) {
-  drawThreeGeo(data, 10, 'sphere', {
-    color: 0x80FF80,
-    transparent: true,
-    opacity: 0.5,
-  }, planet)
-});
+// $.getJSON("./pressure.json?=" + Math.random(), function(data) {
+//   const texture = renderData(data, 101000, 102000);
+//   heatmaps.push(texture);
+// });
 
 scene.add(planet);
 
