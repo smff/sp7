@@ -10,9 +10,24 @@ const handSensorProcessor = require('./handSensorProcessor');
 app.use(express.static('../hologlobe'));
 
 app.get('/action', (req, res) => {
-  io.emit('add action', handSensorProcessor(req.query));
+  io.emit('yo', handSensorProcessor(req.query));
   res.sendStatus(200);
 });
+
+
+io.on('connection', function(socket){
+  socket.on('rotate_more', function(msg){
+    socket.broadcast.emit('rotate_more', msg);
+  });
+  socket.on('rotate_less', function(msg){
+    socket.broadcast.emit('rotate_less', msg);
+  });
+  socket.on('stop_rotation', function(msg){
+    socket.broadcast.emit('stop_rotation', msg);
+  });
+});
+
+
 
 io.on('connection', (socket) => {
   console.log('a user connected');

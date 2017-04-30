@@ -118,14 +118,14 @@ function render() {
 
 render();
 
-socket.on('rotate more', function(msg) {
+socket.on('rotate_more', function(msg) {
   planetRotation += 0.01;
 });
 
-socket.on('rotate less', function(msg) {
+socket.on('rotate_less', function(msg) {
   planetRotation -= 0.01;
 });
 
-socket.on('stop rotation', function(msg) {
+socket.on('stop_rotation', function(msg) {
   planetRotation = 0;
 });
