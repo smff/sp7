@@ -57,24 +57,31 @@ cameras.forEach((camera) => {
   planet.add(sphere);
 }
 
+const heatmaps = [];
+let heatmapMaterial;
+let heatmapIndex;
+
 {
-  $.getJSON("./sample_data.json", function(data) {
-    console.log(data.lat.length, data.lon.length);
-    renderData(data);
-    const canvas = document.getElementById('test');
-    const texture = new THREE.Texture(canvas);
-    texture.needsUpdate = true;
-    // const texture = THREE.ImageUtils.loadTexture('textures/earthspec1k.jpg');
+  $.getJSON("./temperature.json", function(data) {
+    const texture = renderData(data, 250, 320);
+    heatmaps.push(texture);
+    heatmapIndex = 0;
     const material = new THREE.MeshBasicMaterial({
       map: texture,
       blending: THREE.AdditiveBlending,
       transparent: true,
       opacity: 0.3,
     });
+    heatmapMaterial = material;
     const geometry = new THREE.SphereGeometry(10.3, 32, 32);
     const mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.y += -1.57;  
     planet.add(mesh);
+  });
+
+  $.getJSON("./pressure.json", function(data) {
+    const texture = renderData(data, 101000, 102000);
+    heatmaps.push(texture);
   });
 }
 
@@ -149,7 +156,12 @@ socket.on('rotate_down', function(msg) {
 });
 
 socket.on('switch_heatmap', function(msg) {
+  heatmapIndex++;
+  if (heatmapIndex === heatmaps.length) {
+    heatmapIndex = 0;
+  }
 
+  heatmapMaterial.map = heatmaps[heatmapIndex];
 });
 
 socket.on('glitch_it', () => glitch(500));
