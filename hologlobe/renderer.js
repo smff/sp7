@@ -130,7 +130,7 @@ function render() {
 }
 
 render();
-glitch(5000);
+glitch(3000);
 
 socket.on('rotate_more', function(msg) {
   planetRotationY += 0.01;
