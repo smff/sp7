@@ -120,17 +120,32 @@
     <div class="toggle">
         <input type="checkbox" id="rotate_more">
         <span class="button"></span>
-        <span class="label">+</span>
+        <span class="label">H+</span>
     </div>
     <div class="toggle">
         <input type="checkbox" id="rotate_less">
         <span class="button"></span>
-        <span class="label">–</span>
+        <span class="label">H–</span>
+    </div>
+    <div class="toggle">
+        <input type="checkbox" id="rotate_up">
+        <span class="button"></span>
+        <span class="label">V+</span>
+    </div>
+    <div class="toggle">
+        <input type="checkbox" id="rotate_down">
+        <span class="button"></span>
+        <span class="label">V–</span>
+    </div>
+    <div class="toggle">
+        <input type="checkbox" id="switch_heatmap">
+        <span class="button"></span>
+        <span class="label" style="font-size: 18px;">дрыньк!</span>
     </div>
     <div class="toggle">
         <input type="checkbox" id="stop_rotation">
         <span class="button"></span>
-        <span class="label" style="font-size: 14px;">стопэ</span>
+        <span class="label" style="font-size: 18px;">стопэ!</span>
     </div>
 </div>
 
@@ -148,6 +163,15 @@
     });
     $('#rotate_less').click(function() {
       socket.emit('rotate_less', {});
+    });
+    $('#rotate_up').click(function() {
+      socket.emit('rotate_up', {});
+    });
+    $('#rotate_down').click(function() {
+      socket.emit('rotate_down', {});
+    });
+    $('#switch_heatmap').click(function() {
+      socket.emit('switch_heatmap', {});
     });
     $('#stop_rotation').click(function() {
       socket.emit('stop_rotation', {});

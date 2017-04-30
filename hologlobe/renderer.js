@@ -136,6 +136,10 @@ socket.on('rotate_down', function(msg) {
   planetRotationX -= 0.01;
 });
 
+socket.on('switch_heatmap', function(msg) {
+
+});
+
 socket.on('stop_rotation', function(msg) {
   planetRotationY = 0;
   planetRotationX = 0;  

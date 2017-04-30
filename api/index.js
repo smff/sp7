@@ -22,6 +22,15 @@ io.on('connection', function(socket){
   socket.on('rotate_less', function(msg){
     socket.broadcast.emit('rotate_less', msg);
   });
+  socket.on('rotate_up', function(msg){
+    socket.broadcast.emit('rotate_up', msg);
+  });
+  socket.on('rotate_down', function(msg){
+    socket.broadcast.emit('rotate_down', msg);
+  });
+  socket.on('switch_heatmap', function(msg){
+    socket.broadcast.emit('switch_heatmap', msg);
+  });
   socket.on('stop_rotation', function(msg){
     socket.broadcast.emit('stop_rotation', msg);
   });

@@ -23,7 +23,6 @@ function drawPixelColor(x, y, r, g, b, a) {
 function drawPixelValue(x, y, value) {
   const color = d3.rgb(colorScale(value));
   drawPixelColor(x, y, color.r, color.g, color.b, 255);
-  // drawPixelColor(x, y, 0, 0, 255, 128);  
 }
 
 function updateCanvas() {
