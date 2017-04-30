@@ -34,6 +34,9 @@ io.on('connection', function(socket){
   socket.on('stop_rotation', function(msg){
     socket.broadcast.emit('stop_rotation', msg);
   });
+  socket.on('glitch_it', function(msg){
+    socket.broadcast.emit('glitch_it', msg);
+  });
 });
 
 

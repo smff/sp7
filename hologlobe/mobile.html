@@ -118,6 +118,11 @@
 
 <div class="container">
     <div class="toggle">
+        <input type="checkbox" id="glitch_it">
+        <span class="button"></span>
+        <span class="label" style="font-size: 18px;">глитч</span>
+    </div>
+    <div class="toggle">
         <input type="checkbox" id="rotate_more">
         <span class="button"></span>
         <span class="label">H+</span>
@@ -175,6 +180,9 @@
     });
     $('#stop_rotation').click(function() {
       socket.emit('stop_rotation', {});
+    });
+    $('#glitch_it').click(function() {
+      socket.emit('glitch_it', {});
     });
   });
 </script>
