@@ -101,18 +101,19 @@ const composers = renderers.map((renderer, index) => {
   return composer;
 });
 
-function glitch() {
+function glitch(delay) {
   composers.forEach((composer) => {
     const glitchPass = composer.passes[1];
 
     if (!glitchPass.goWild) {
       glitchPass.renderToScreen = true;
       glitchPass.goWild = true;
+      glitchPass.goSmooth = false;
 
       setTimeout(() => {
         glitchPass.goWild = false;
         glitchPass.goSmooth = true;
-      }, 500);
+      }, delay);
     }
   });
 }
@@ -129,7 +130,7 @@ function render() {
 }
 
 render();
-glitch();
+glitch(5000);
 
 socket.on('rotate_more', function(msg) {
   planetRotationY += 0.01;
@@ -151,7 +152,7 @@ socket.on('switch_heatmap', function(msg) {
 
 });
 
-socket.on('glitch_it', glitch);
+socket.on('glitch_it', () => glitch(500));
 
 socket.on('stop_rotation', function(msg) {
   planetRotationY = 0;
