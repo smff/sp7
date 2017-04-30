@@ -145,17 +145,12 @@
     <div class="toggle">
         <input type="checkbox" id="switch_heatmap">
         <span class="button"></span>
-        <span class="label" style="font-size: 18px;">дрыньк</span>
+        <span class="label" style="font-size: 18px;">●</span>
     </div>
     <div class="toggle">
         <input type="checkbox" id="stop_rotation">
         <span class="button"></span>
         <span class="label" style="font-size: 18px;">стопэ</span>
-    </div>
-    <div class="toggle">
-        <input type="checkbox" id="mus_mode">
-        <span class="button"></span>
-        <span class="label" style="font-size: 18px;">муз.мод</span>
     </div>
 </div>
 
@@ -166,11 +161,7 @@
   $(function() {
     var socket = io();
     $('input:checkbox').change(function(el) {
-      if($(this).attr("id") === "mus_mode"){
-
-      }else{
-        $(this).prop("checked", false);
-      }
+      $(this).prop("checked", false);
     });
     $('#rotate_more').click(function() {
       socket.emit('rotate_more', {});
