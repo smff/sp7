@@ -93,19 +93,29 @@ const composers = renderers.map((renderer, index) => {
   const composer = new THREE.EffectComposer( renderer );
   composer.addPass( new THREE.RenderPass( scene, cameras[index]) );
 
-  const glitchPass = new THREE.GlitchPass();
-  glitchPass.renderToScreen = true;
-  glitchPass.goWild = true;
 
-  setTimeout(() => {
-    glitchPass.goWild = false;
-    glitchPass.goSmooth = true;
-  }, 5000);
+  const glitchPass = new THREE.GlitchPass();
 
   composer.addPass( glitchPass );
 
   return composer;
 });
+
+function glitch() {
+  composers.forEach((composer) => {
+    const glitchPass = composer.passes[1];
+
+    if (!glitchPass.goWild) {
+      glitchPass.renderToScreen = true;
+      glitchPass.goWild = true;
+
+      setTimeout(() => {
+        glitchPass.goWild = false;
+        glitchPass.goSmooth = true;
+      }, 500);
+    }
+  });
+}
 
 let planetRotationY = 0;
 let planetRotationX = 0;
@@ -119,6 +129,7 @@ function render() {
 }
 
 render();
+glitch();
 
 socket.on('rotate_more', function(msg) {
   planetRotationY += 0.01;
@@ -139,6 +150,8 @@ socket.on('rotate_down', function(msg) {
 socket.on('switch_heatmap', function(msg) {
 
 });
+
+socket.on('glitch_it', glitch);
 
 socket.on('stop_rotation', function(msg) {
   planetRotationY = 0;
