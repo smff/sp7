@@ -50,7 +50,7 @@ THREE.GlitchPass.prototype = Object.assign( Object.create( THREE.Pass.prototype 
 		if (!this.goSmooth) {
 			if ( this.curF % this.randX == 0 || this.goWild == true ) {
 
-				this.uniforms[ 'amount' ].value = Math.random() / 30;
+				this.uniforms[ 'amount' ].value = Math.random() / 3000;
 				this.uniforms[ 'angle' ].value = THREE.Math.randFloat( - Math.PI, Math.PI );
 				this.uniforms[ 'seed_x' ].value = THREE.Math.randFloat( - 1, 1 );
 				this.uniforms[ 'seed_y' ].value = THREE.Math.randFloat( - 1, 1 );
@@ -61,7 +61,7 @@ THREE.GlitchPass.prototype = Object.assign( Object.create( THREE.Pass.prototype 
 
 			} else if ( this.curF % this.randX < this.randX / 5 ) {
 
-				this.uniforms[ 'amount' ].value = Math.random() / 90;
+				this.uniforms[ 'amount' ].value = Math.random() / 9000;
 				this.uniforms[ 'angle' ].value = THREE.Math.randFloat( - Math.PI, Math.PI );
 				this.uniforms[ 'distortion_x' ].value = THREE.Math.randFloat( 0, 1 );
 				this.uniforms[ 'distortion_y' ].value = THREE.Math.randFloat( 0, 1 );
