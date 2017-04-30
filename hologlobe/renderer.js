@@ -155,6 +155,11 @@ socket.on('switch_heatmap', function(msg) {
 socket.on('glitch_it', () => glitch(500));
 
 socket.on('stop_rotation', function(msg) {
-  planetRotationY = 0;
-  planetRotationX = 0;  
+  if (planetRotationX || planetRotationY) {
+    planetRotationY = 0;
+    planetRotationX = 0;
+  } else {
+    planet.rotation.x = 0;
+    planet.rotation.y = 0;
+  }
 });
