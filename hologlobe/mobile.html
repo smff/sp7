@@ -152,6 +152,11 @@
         <span class="button"></span>
         <span class="label" style="font-size: 18px;">стопэ</span>
     </div>
+    <div class="toggle">
+        <input type="checkbox" id="mus_mode">
+        <span class="button"></span>
+        <span class="label" style="font-size: 18px;">муз.мод</span>
+    </div>
 </div>
 
 
@@ -161,7 +166,11 @@
   $(function() {
     var socket = io();
     $('input:checkbox').change(function(el) {
-      $(this).prop("checked", false);
+      if($(this).attr("id") === "mus_mode"){
+
+      }else{
+        $(this).prop("checked", false);
+      }
     });
     $('#rotate_more').click(function() {
       socket.emit('rotate_more', {});
