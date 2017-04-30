@@ -55,8 +55,8 @@ cameras.forEach((camera) => {
 let heatmapIndex = 0;
 let heatmapMaterial;
 const heatmaps = [
-  textureLoader.load('temperature.png'),
-  textureLoader.load('pressure.png'),
+  textureLoader.load('temperature'),
+  textureLoader.load('pressure'),
 ];
 
 $.getJSON("test_geojson/custom.geo.json?q=" + Math.random(), function(data) {
